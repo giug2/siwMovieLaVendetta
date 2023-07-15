@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<title th:text="${movie.title}">Film</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/rating.css">
+
+	<!-- embedding FontAwesome Kit script -->
+	<script src="https://kit.fontawesome.com/132524fe8d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<header th:replace="~{fragments/sections.html :: header-film}"></header>
+
+	<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="page-content" th:if="${movie}">
+						<div class="row">
+							<a class="fs-1" th:href="@{/movie}"><i class="fa-solid fa-arrow-left"></i></a>
+							<div class="col-lg-6">
+								<div th:if="${movie.picture}">
+									<img src="" th:src="@{'/files/' + ${movie.picture.id}}" alt="film_image"/>
+								</div>
+								<div th:unless="${movie.picture}">
+									<img src="https://picsum.photos/200/300" alt="film_image"/>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="row my-4">
+									<div class="col-12">
+										<h4 class="film-title" th:text="${movie.title}">titolo film</h4>
+										<h5 th:text="'(' + ${movie.year} + ')'">anno</h5>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12">
+										<h4 class="film-artist">Regista:</h4>
+										<!-- uso una <ul> anche se supponiamo che ogni film abbia un solo regista per motivi di design -->
+										<ul class="list-group list-group-flush">
+											<li class="list-group-item">
+												<a th:if="${movie.director}" th:href="@{'/artist/' + ${movie.director.id}}" th:text="${movie.director.name} + ' ' + ${movie.director.surname}">regista</a>
+											</li>
+										</ul>
+										<div th:if="${!movie.actors.isEmpty()}" class="my-4">
+											<h4 class="film-artist">Attori:</h4>
+											<ul class="list-group list-group-flush">
+												<li th:each="artist : ${movie.actors}" class="list-group-item">
+													<a th:href="@{'/artist/' + ${artist.id}}" th:text="${artist.name} + ' ' + ${artist.surname}"></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-6 mt-3">
+										<h4 class="film-artist">Average Rating:  <em th:text="${averageRating}"></em></h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-center" th:if="${!movie.reviews.isEmpty()}">
+							<div class="col-8 mt-4" th:each="review : ${movie.reviews}">
+								<div class="review p-4">
+									<figure class="text-center">
+										<blockquote class="blockquote">
+											<h5 th:text="${review.title}">esempio titolo recensione</h5>
+										</blockquote>
+										<p class="lh-sm" th:text="${review.text}"> testo recensione</p>
+										<figcaption class="blockquote-footer mt-3" th:text="${review.author.name + ' ' + review.author.surname}">Nome utente</figcaption>
+										<div class="review-mark" th:switch="${review.mark}">
+											<div th:case="5" th:insert="~{/fragments/starrating.html :: 5-star}"></div>
+											<div th:case="4" th:insert="~{/fragments/starrating.html :: 4-star}"></div>
+											<div th:case="3" th:insert="~{/fragments/starrating.html :: 3-star}"></div>
+											<div th:case="2" th:insert="~{/fragments/starrating.html :: 2-star}"></div>
+											<div th:case="1" th:insert="~{/fragments/starrating.html :: 1-star}"></div>
+										</div>
+									</figure>
+									<div class="justify-content-end" th:if="${credentials != null && credentials.isAdmin()}"> <!-- MOSTRA IL BOTTONE CANCELLA RECENSIONE SOLO SE L'UTENTE LOGGATO E' UN ADMIN-->
+										<a th:href="@{'/admin/removeReview/' + ${review.id}}">Cancella</a>
+									</div>
+									<div th:unless="${credentials != null && credentials.isAdmin()}">
+										<div class="justify-content-end" th:if="${review.author.equals(userDetails)}"> <!-- MOSTRA IL BOTTONE CANCELLA RECENSIONE SOLO SE L'UTENTE LOGGATO E' L'AUTORE-->
+											<a th:href="@{'/removeReview/' + ${review.id}}">Cancella</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-center" th:if="${userDetails != null && reviewAuthorSet != null &&!reviewAuthorSet.contains(userDetails)}">
+							<div class="col-8">
+								<div class="form review p-4">
+									<form th:action="@{'/movie/addNewReviewToMovie/' + ${movie.id}}" th:object="${newReview}" method="POST">
+										<h1>Scrivi una recensione!</h1>
+										<div class="col-4 form-group">
+											<label for="reviewTitle" class="form-label">Titolo</label>
+											<input type="text" id="reviewTitle" class="form-control" th:field="*{title}">
+											<p class="form-text valid mt-1" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+										</div>
+										<div class="col-4 form-group my-3">
+											<label class="form-label">Voto</label>
+											<fieldset>
+												<span class="star-cb-group">
+												  <input type="radio" id="rating-5" name="rating" value="5" th:field="*{mark}" />
+												  <label for="rating-5">5</label>
+												  <input type="radio" id="rating-4" name="rating" value="4" th:field="*{mark}" checked="checked" />
+												  <label for="rating-4">4</label>
+												  <input type="radio" id="rating-3" name="rating" value="3" th:field="*{mark}"/>
+												  <label for="rating-3">3</label>
+												  <input type="radio" id="rating-2" name="rating" value="2" th:field="*{mark}" />
+												  <label for="rating-2">2</label>
+												  <input type="radio" id="rating-1" name="rating" value="1" th:field="*{mark}" />
+												  <label for="rating-1">1</label>
+												  <input type="radio" id="rating-0" name="rating" value="0" th:field="*{mark}" class="star-cb-clear" />
+												  <label for="rating-0">0</label>
+												</span>
+											</fieldset>
+											<p class="form-text valid mt-1" th:if="${#fields.hasErrors('mark')}" th:errors="*{mark}"></p>
+										</div>
+										<div class="form-group mt-3">
+											<label for="reviewContent">Testo</label>
+											<textarea class="form-control" id="reviewContent" rows="5" th:field="*{text}"></textarea>
+										</div>
+										<div th:if="${#fields.hasGlobalErrors()}">
+											<p class="form-text valid" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+										</div>
+										<div class="main-button my-4">
+											<button type="submit">Invia!</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<footer th:replace="~{fragments/sections.html :: footer}"></footer>
+	<!-- Bootstrap js -->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

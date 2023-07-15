@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+	<title>SiwMovie - Admin</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- embedding FontAwesome Kit script -->
+	<script src="https://kit.fontawesome.com/132524fe8d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<!-- ***** Header Area ***** -->
+	<header th:replace="~{fragments/sections.html :: header-home}"></header>
+	<!-- Header Area End -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-content">
+					<h5>Operazioni per <em>amministratore</em>:</h5>
+					<div class="row my-4">
+						<div class="col-lg-6">
+							<img class="my-4" src="/images/rene.jpg" alt="rene'"/>
+							<a data-bs-toggle="collapse" href="#collapseMovie" role="button" aria-expanded="false" aria-controls="collapseMovie">
+								<i class="fa-solid fa-film"></i> Gestisci film
+							</a>
+							<div class="collapse" id="collapseMovie">
+								<div class="card card-body">
+									<a href="/admin/formNewMovie">Aggiungi un nuovo film</a>
+								</div>
+								<div class="card card-body">
+									<a href="/admin/manageMovies">Modifica film</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<img class="my-4" src="/images/stanis.jpeg" alt="stanis"/>
+							<a data-bs-toggle="collapse" href="#collapseArtist" role="button" aria-expanded="false" aria-controls="collapseArtist">
+								<i class="fa-solid fa-image-portrait"></i> Gestisci artisti
+							</a>
+							<div class="collapse" id="collapseArtist">
+								<div class="card card-body">
+									<a href="/admin/formNewArtist">Aggiungi un nuovo artista</a>
+								</div>
+								<div class="card card-body">
+									<a href="/admin/manageArtists">Modifica artista</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="~{fragments/sections.html :: index}"></div>
+
+	<footer th:replace="~{fragments/sections.html :: footer}"></footer>
+	<!-- Bootstrap js -->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

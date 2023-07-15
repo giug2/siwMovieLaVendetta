@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Registrati</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/rating.css">
+
+  <!-- embedding FontAwesome Kit script -->
+  <script src="https://kit.fontawesome.com/132524fe8d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- ***** Header Area ***** -->
+  <header th:replace="~{fragments/sections.html :: header-profile}"></header>
+
+  <!-- content -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="page-content">
+        <!-- profile card-->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row align-items-center d-flex justify-content-center profile">
+              <div class="col-lg-5 ratio-1x1">
+                <div th:if="${userDetails.picture}">
+                  <img src="" th:src="@{'/files/' + ${userDetails.picture.id}}" alt="pro_pic"/>
+                </div>
+                <div th:unless="${userDetails.picture}">
+                  <img src="https://picsum.photos/200/300" alt="pro_pic"/>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <h5 class="text-uppercase fs-2 text-start" th:text="${userDetails.name} + ' ' + ${userDetails.surname}"></h5> <br>
+                <h6 class="text-start" th:text="'Email: ' + ${userDetails.email}"></h6>
+                <h6 class="text-start" th:text="'Username: ' + ${credentials.username}"></h6>
+                <div class="main-button py-3 text-center d-flex justify-content-lg-start">
+                  <a th:href="@{/user/formUpdateProfile}">Modifica Profilo <i class="fa-solid fa-pen-to-square"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ultime recensioni pubblicate modificabili -->
+        <div class="row justify-content-center mt-5" th:if="${!userReviews.isEmpty()}">
+          <hr />
+          <h5 class="text-center my-3">Le tue recensioni</h5>
+          <div class="col-8 mt-4" th:each="review : ${userReviews}">
+            <div class="review p-4">
+              <figure class="text-center">
+                <blockquote class="blockquote">
+                  <h5 th:text="${review.title}">esempio titolo recensione</h5>
+                </blockquote>
+                <p class="lh-sm" th:text="${review.text}"> testo recensione</p>
+                <a th:href="@{'/movie/' + ${review.movie.id}}">
+                  <p class="blockquote-footer mt-3" th:text="${review.movie.title + ' (' + review.movie.year} + ')'">Film (anno)</p>
+                </a>
+                <div class="review-mark" th:switch="${review.mark}">
+                  <div th:case="5" th:insert="~{fragments/starrating.html :: 5-star}"></div>
+                  <div th:case="4" th:insert="~{fragments/starrating.html :: 4-star}"></div>
+                  <div th:case="3" th:insert="~{fragments/starrating.html :: 3-star}"></div>
+                  <div th:case="2" th:insert="~{fragments/starrating.html :: 2-star}"></div>
+                  <div th:case="1" th:insert="~{fragments/starrating.html :: 1-star}"></div>
+                </div>
+              </figure>
+              <div class="justify-content-end cancella">
+                <a th:href="@{'/admin/removeReview/' + ${review.id}}">Cancella</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer area -->
+  <footer th:replace="~{fragments/sections.html :: footer}"></footer>
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

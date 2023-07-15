@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+	<title>New Artist</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- embedding FontAwesome Kit script -->
+	<script src="https://kit.fontawesome.com/132524fe8d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<!-- ***** Header Area ***** -->
+	<header th:replace="~{fragments/sections.html :: header-artist}"></header>
+	<!-- Header Area End -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="form">
+					<div class="row g-4 align-item-center">
+						<div class="col-md-6 p-3">
+							<form th:action="@{/admin/artist}" method="POST" th:object="${artist}">
+								<h1> Aggiungi un artista!</h1>
+								<div class="row mb-3">
+									<div class="form-group col-sm-6">
+										<label for="formName" class="form-label">Nome:</label>
+										<input type="text" placeholder="Sergio" th:field="*{name}" class="form-control" id="formName"/>
+										<p class="form-text valid mt-1" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="formSurname" class="form-label">Cognome</label>
+										<input type="text" placeholder="Leone" class="form-control" th:field="*{surname}" id="formSurname"/>
+										<p class="form-text valid mt-1" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-6">
+										<label for="formDateBirth" class="form-label">Data di nascita:</label>
+										<input class="form-control" type="date" th:field="*{dateOfBirth}" id="formDateBirth">
+										<p class="form-text valid mt-1" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></p>
+									</div>
+									<div class="col-6">
+										<label for="formDateDeath" class="form-label">Data di morte <span class="fs-6">(opzionale)</span></label>
+										<input class="form-control" type="date" th:field="*{dateOfDeath}" id="formDateDeath">
+										<p class="form-text valid mt-1" th:if="${#fields.hasErrors('dateOfDeath')}" th:errors="*{dateOfDeath}"></p>
+									</div>
+								</div>
+								<div class="col-10 mb-3">
+									<label for="formFile" class="form-label">Foto:</label>
+									<input class="form-control" type="file" id="formFile" th:field="*{picture}" />
+								</div>
+
+								<div th:replace="~{fragments/errors.html :: fieldGlobalError}"></div>
+								<div class="main-button py-3">
+									<button type="submit">Conferma</button>
+								</div>
+							</form>
+						</div>
+						<div class="col-lg-6 p-3 d-flex align-content-center border-left">
+							<img src="/images/leo.gif" alt="leo"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="~{fragments/sections.html :: footer}"></footer>
+	<!-- Bootstrap js -->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

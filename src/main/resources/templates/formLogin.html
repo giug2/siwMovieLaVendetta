@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<title>Accedi</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- embedding FontAwesome Kit script -->
+	<script src="https://kit.fontawesome.com/132524fe8d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<!-- TODO: oauth -->
+	<div class="container-md px-4">
+		<div class="form">
+			<div class="row gx-4 align-items-center">
+				<div class="p-3 col-md-6">
+					<a href="/"><img src="/images/logo-siw.png" alt=""/></a>
+				</div>
+				<div class="p-3 col-md-6 border-left">
+					<form th:action="@{/login}" method="POST">
+						<h1>Login</h1>
+						<label class="form-label">Username</label>
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+							<input name="username" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+						</div>
+						<label class="form-label">Password</label>
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-key"></i></span>
+							<input name="password" type="password" class="form-control" aria-label="Password" aria-describedby="basic-addon2">
+						</div>
+						<span class="form-text valid mt-1" th:if="${param.error != null}">Username o password errati</span>
+
+						<div class="main-button py-3">
+							<button type="submit">Login</button>
+						</div>
+						<div>
+							<span class="form-text">Se non sei ancora registrato <a href="/register">Registrati</a>!</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="~{fragments/sections.html :: footer}"></footer>
+	<!-- Bootstrap js-->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

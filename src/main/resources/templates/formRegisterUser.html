@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<title>Registrati</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<!-- TODO: oauth -->
+	<div class="container px-3">
+		<div class="form">
+			<form th:action="@{/register}" method="POST" enctype="multipart/form-data">
+				<div class="row gx-4 align-items-center">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-12">
+								<a href="/"><img src="/images/logo-siw.png" alt=""/></a>
+							</div>
+							<div class="col-12">
+								<div class="form-group my-4">
+									<label for="formImmagine">Immagine Profilo</label>
+									<input type="file" class="form-control" name="file" id="formImmagine" accept=""/>
+									<p class="mt-1 form-text valid" th:if="${fileUploadError}" th:text="${fileUploadError}"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="p4 col-md-6 border-left">
+						<h1>Registrati</h1>
+						<div th:object="${userData}">
+							<div class="row">
+								<div class="form-group col-sm-6">
+									<label for="formName">Nome</label>
+									<input type="text" placeholder="Mario" class="form-control" th:field="*{name}" id="formName"/>
+									<p class="form-text mt-1 valid" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+								</div>
+								<div class="form-group col-sm-6">
+									<label for="formSurname">Cognome</label>
+									<input type="text" placeholder="Rossi" class="form-control" th:field="*{surname}" id="formSurname"/>
+									<p class="form-text mt-1 valid" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+								</div>
+							</div>
+							<div class="form-group my-4">
+								<label for="formEmail">Email</label>
+								<input type="text" placeholder="youremail@example.com" class="form-control" th:field="*{email}" id="formEmail" />
+								<p class="form-text mt-1 valid" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+							</div>
+							<div th:replace="~{fragments/errors.html :: fieldGlobalError}"></div>
+						</div>
+						<div class="row" th:object="${userCredentials}">
+							<div class="form-group col-md-6">
+								<label for="formUsername">Username</label>
+								<input type="text" placeholder="username" class="form-control" th:field="*{username}" id="formUsername"/>
+								<p class="form-text mt-1 valid" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="formPassword">Password</label>
+								<input type="password" placeholder="password" class="form-control" th:field="*{password}" id="formPassword" />
+								<p class="form-text mt-1 valid" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+							</div>
+							<div th:replace="~{fragments/errors.html :: fieldGlobalError}"></div>
+						</div>
+						<div class="main-button py-3">
+							<button type="submit">Registrati</button>
+						</div>
+						<div>
+							<span class="form-text">Hai già un account? <a href="/login">Accedi</a></span>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+
+	<footer th:replace="~{fragments/sections.html :: footer}"></footer>
+	<!-- Bootstrap js -->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

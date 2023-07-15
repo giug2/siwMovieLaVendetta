@@ -1,0 +1,15 @@
+<div class="mt-1" th:if="${#fields.hasGlobalErrors()}" th:fragment="fieldGlobalError">
+  <p class="form-text valid" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+</div>
+
+
+<div class="col-lg-12" th:fragment="lebowski">
+  <div class="row gy-5">
+    <div class="col-12">
+      <h2>Non ci sono film nel sistema!</h2>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+      <img class="notFound" src="/images/jeffrey_lebowski.gif" alt="notfound"/>
+    </div>
+  </div>
+</div>

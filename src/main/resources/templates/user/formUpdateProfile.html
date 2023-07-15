@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <title>Update Profile</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- embedding FontAwesome Kit script -->
+  <script src="https://kit.fontawesome.com/132524fe8d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- Content -->
+<div class="container px-3">
+  <div class="form">
+    <a class="fs-1" href="/profilo"><i class="fa-solid fa-arrow-left"></i></a>
+    <form th:action="@{/user/updateProfile}" method="POST" th:object="${userDetails}" enctype="multipart/form-data">
+      <div class="row gx-4 align-items-center">
+        <div class="col-md-6 p-3">
+          <div class="d-flex justify-content-center" th:if="${userDetails.picture}">
+            <img class="img-fluid" src="" th:src="@{'/files/' + ${userDetails.picture.id}}" alt="profile_img"/>
+          </div>
+          <div th:unless="${userDetails.picture}">
+            <a href="/"><img src="/images/logo-siw.png" alt="siw-logo"/></a>
+          </div>
+          <div class="row my-3">
+            <div class="col-8 my-3">
+              <label for="formImmagine" class="form-label">Modifica Immagine</label>
+              <input type="file" id="formImmagine" class="form-control" name="file" accept="image/*" />
+              <p class="mt-1 form-text valid" th:if="${fileUploadError}" th:text="${fileUploadError}"></p>
+              <div class="btn btn-outline-danger rounded-5 mt-5" >
+                <a class="text-danger" th:href="@{/user/deleteProfilePicture}">Elimina immagine</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 p-3 border-left">
+          <h4 class="text-center my-4">Modifica <em>profilo</em></h4>
+          <div class="row">
+            <div class="form-group col-md-10 mb-3">
+              <label class="form-label">Modifica nome</label>
+              <input name="nome" type="text" th:field="*{name}" class="form-control" aria-label="name" aria-describedby="basic-addon1">
+              <p class="mt-1 form-text valid" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-10 mb-3">
+              <label class="form-label">Modifica cognome</label>
+              <input name="cognome" type="text" th:field="*{surname}" class="form-control" aria-label="surname" aria-describedby="basic-addon2"></input>
+              <p class="mt-1 form-text valid" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-10 my-3">
+              <label class="form-label">Modifica email</label>
+              <input name="email" type="text" th:field="*{email}" class="form-control" aria-label="email" aria-describedby="basic-addon4">
+              <p class="mt-1 form-text valid" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            </div>
+          </div>
+          <div class="mt-1" th:if="${#fields.hasGlobalErrors()}">
+            <p class="form-text valid" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+          </div>
+          <div class="main-button py-3 mt-5">
+            <button type="submit">Conferma</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer th:replace="~{fragments/sections.html :: footer}"></footer>
+<!-- Boostrap JS Files -->
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+	<title>SiwMovie - Homepage</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- embedding FontAwesome Kit script -->
+	<script src="https://kit.fontawesome.com/132524fe8d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<!-- ***** Header Area ***** -->
+	<header th:replace="~{fragments/sections.html :: header-home}"></header>
+
+	<!-- Main area -->
+	<div th:replace="~{fragments/sections.html :: index}"></div>
+	<!-- Footer area -->
+	<footer th:replace="~{fragments/sections.html :: footer}"></footer>
+	<!-- Bootstrap core JavaScript -->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

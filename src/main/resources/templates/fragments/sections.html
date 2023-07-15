@@ -1,0 +1,258 @@
+<footer th:fragment="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p>
+          Copyright © 2023
+          <a href="https://www.github.com/hermann0001" target="_blank">Hermann Tamilia</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- HEADERS WITH ACTIVE SET ON HEADER-X -->
+<header class="header-area" th:fragment="header-home">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- logo -->
+          <a href="/" class="logo">
+            <img src="/images/logo.png" alt="logo">
+          </a>
+          <!-- search bar -->
+          <div class="search-input">
+            <form class="search" th:action="@{/find}" method="post">
+              <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
+          </div>
+          <!-- menu bar -->
+          <ul class="nav">
+            <li>
+              <a href="/" class="active">Home</a>
+            </li>
+            <li>
+              <a href="/movie"> Film </a>
+            </li>
+            <li>
+              <a href="/artist"> Artisti </a>
+            </li>
+            <!-- login or go to profile logic -->
+            <li th:if="${userDetails}">
+              <a href="/profile"><span class="pe-2" th:text="${credentials.username}"></span><img src="/images/profile-header-unlock.svg" alt=""/></a>
+            </li>
+            <li th:unless="${userDetails}">
+              <a href="/login">Login <img src="/images/profile-header-lock.svg" alt=""></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<header class="header-area" th:fragment="header-film">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- logo -->
+          <a href="/" class="logo">
+            <img src="/images/logo.png" alt="logo">
+          </a>
+          <!-- search bar -->
+          <div class="search-input">
+            <form class="search" th:action="@{/find}" method="post">
+              <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
+          </div>
+          <!-- menu bar -->
+          <ul class="nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/movie" class="active"> Film </a>
+            </li>
+            <li>
+              <a href="/artist"> Artisti </a>
+            </li>
+            <!-- login or go to profile logic -->
+            <li th:if="${userDetails}">
+              <a href="/profile"><span class="pe-2" th:text="${credentials.username}"></span><img src="/images/profile-header-unlock.svg" alt=""/></a>
+            </li>
+            <li th:unless="${userDetails}">
+              <a href="/login">Login <img src="/images/profile-header-lock.svg" alt=""></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<header class="header-area" th:fragment="header-artist">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- logo -->
+          <a href="/" class="logo">
+            <img src="/images/logo.png" alt="logo">
+          </a>
+          <!-- search bar -->
+          <div class="search-input">
+            <form class="search" th:action="@{/find}" method="post">
+              <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
+          </div>
+          <!-- menu bar -->
+          <ul class="nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/movie"> Film </a>
+            </li>
+            <li>
+              <a href="/artist" class="active"> Artisti </a>
+            </li>
+            <!-- login or go to profile logic -->
+            <li th:if="${userDetails}">
+              <a href="/profile"><span class="pe-2" th:text="${credentials.username}"></span><img src="/images/profile-header-unlock.svg" alt=""/></a>
+            </li>
+            <li th:unless="${userDetails}">
+              <a href="/login">Login <img src="/images/profile-header-lock.svg" alt=""></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<header class="header-area" th:fragment="header-profile">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- logo -->
+          <a href="/" class="logo">
+            <img src="/images/logo.png" alt="logo">
+          </a>
+          <!-- search bar -->
+          <div class="search-input">
+            <form class="search" th:action="@{/find}" method="post">
+              <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
+          </div>
+          <!-- menu bar -->
+          <ul class="nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/movie"> Film </a>
+            </li>
+            <li>
+              <a href="/artist"> Artisti </a>
+            </li>
+            <!-- login or go to profile logic -->
+            <li th:if="${userDetails}">
+              <a class="active" href="/logout">Logout <img src="/images/profile-header-unlock.svg" alt=""/></a>
+            </li>
+            <li th:unless="${userDetails}">
+              <a class="active" href="/login">Login <img src="/images/profile-header-lock.svg" alt=""></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container" th:fragment="index">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+        <!-- first container -->
+        <div class="welcome">
+          <div class="row">
+            <div class="col-lg-5">
+              <div>
+                <h5>Benvenuti su <em>Siw Movie 2</em></h5>
+                <h6>La vendetta...</h6>
+              </div>
+              <div class="main-button" th:if="${userDetails}">
+                <a href="/profile">Profilo</a>
+              </div>
+              <div class="main-button" th:unless="${userDetails}">
+                <a href="/login">Accedi!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end of first container -->
+        <!-- second container -->
+        <div class="various-film">
+          <div class="heading-section">
+            <h4> What's <em style="text-transform: none">new</em>?</h4>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="item">
+                <!-- film carousel-->
+                <div id="filmCarousel" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner" th:each="id, iStat : ${movieImages}">
+                    <div th:class=" 'carousel-item ' + ${iStat.index == 0 ? 'active' : ' '}">
+                      <img th:src="@{'/files/' + ${id}}" class="d-md-block w-100" alt="...">
+                    </div>
+                  </div>
+                </div>
+                <!-- end of film carousel-->
+                <div class="main-button d-flex justify-content-center">
+                  <a href="/movie"> Browse Movies</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="item">
+                <!-- artist carousel-->
+                <div id="artistsCarousel" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner" th:each="id, iStat : ${artistImages}">
+                    <div th:class=" 'carousel-item ' + ${iStat.index == 0 ? 'active' : ' '}">
+                      <img th:src="@{'/files/' + ${id}}" class="d-md-block w-100" alt="...">
+                    </div>
+                  </div>
+                </div>
+                <!-- end of artist carousel-->
+                <div class="main-button d-flex justify-content-center">
+                  <a href="/artist"> Browse Artists</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-cols-1 row-cols-md-3 g-4" th:fragment="movies">
+  <div th:each="movie : ${movies}" class="col">
+    <a th:href="@{'/movie/' + ${movie.id}}">
+      <div class="card" style="width: 18rem;">
+        <div class="card-img" th:if="${movie.picture}">
+          <img src="" th:src="@{'/files/' + ${movie.picture.id}}" alt="film_image"/>
+        </div>
+        <div class="card-img" th:unless="${movie.picture}">
+          <img src="https://picsum.photos/200/300" alt="film_image"/>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title" th:text="${movie.title}">Up!</h5>
+          <p class="card-text" th:text="' (' + ${movie.year} + ' )'">(2000)</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

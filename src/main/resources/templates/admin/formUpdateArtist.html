@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <title>Update Movie</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- embedding FontAwesome Kit script -->
+  <script src="https://kit.fontawesome.com/132524fe8d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- ***** Header Area ***** -->
+  <header th:replace="~{fragments/sections.html :: header-artist}"></header>
+  <!-- Header Area End -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content" th:if="${artist}">
+          <a class="fs-1" th:href="@{/admin/manageArtists}"><i class="fa-solid fa-arrow-left"></i></a>
+          <h2>Aggiorna artista</h2>
+          <div class="row mt-5">
+            <div class="col-lg-6">
+              <div th:if="${artist.picture}">
+                <img src="" th:src="@{'/files/' + ${artist.picture.id}}" alt="artist_image"/>
+              </div>
+              <div th:unless="${artist.picture}">
+                <img src="https://picsum.photos/200/300" />
+              </div>
+              <div class="row mt-0 form">
+                <form th:action="@{'/admin/updateArtistImage/' + ${artist.id}}" method="POST" th:object="${artist.picture}" enctype="multipart/form-data">
+                  <div class="form-group my-0">
+                    <label for="formImmagine">Immagine</label>
+                    <input type="file" class="form-control" name="file" id="formImmagine" accept=""/>
+                    <p class="mt-1 form-text valid" th:if="${fileUploadError}" th:text="${fileUploadError}"></p>
+                  </div>
+                  <div class="main-button py-3">
+                    <button type="submit">Cambia Immagine!</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="row my-4">
+                <div class="col-12">
+                  <div class="film-title editable-text">
+                    <a th:text="${artist.name} + ' ' + ${artist.surname}">Sergio Leone</a>		<!-- TODO: usare i fragments per rimpiazzare codice html -->
+                  </div>
+                  <div class="mt-1 editable-text">
+                    <a th:text="${artist.dateOfBirth.getDayOfMonth()} + '-' + ${artist.dateOfBirth.getMonthValue()} + '-' + ${artist.dateOfBirth.getYear()}"></a>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="film-artist">Film Diretti:</h4>
+                  <div th:each="movie : ${artist.directedMovies}">
+                    <a th:href="@{'/movie/' + ${movie.id}}" th:text="${movie.title} + ' (' + ${movie.year} + ')'">film</a>
+                    <a th:href="@{'/admin/removeMovieFromDirectedMovies/' + ${artist.id} + '/' + ${movie.id}}">
+                      <i class="fa-solid fa-xmark" style="color: darkred"></i>
+                    </a>
+                  </div>
+                  <div class="dropdown my-2">
+                    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Aggiungi
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li th:each="movie : ${directedMoviesList}"><a th:text="${movie.title} + ' (' + ${movie.year} + ')'" class="dropdown-item" th:href="@{'/admin/addMovieToDirectedMovies/' + ${artist.id} + '/' + ${movie.id}}">regista</a></li>
+                    </ul>
+                  </div>
+
+                  <h4 class="film-artist">Film in cui ha recitato:</h4>
+                  <div>
+                    <div th:each="movie : ${artist.starredMovies}">
+                      <a th:href="@{'/movie/' + ${movie.id}}" th:text="${movie.title} + ' (' + ${movie.year} + ')'">film</a>
+                      <a th:href="@{'/admin/removeMovieFromStarredMovies/' + ${artist.id} + '/' + ${movie.id}}">
+                        <i class="fa-solid fa-xmark" style="color: darkred"></i>
+                      </a>
+                    </div>
+                    <div class="dropdown my-2">
+                      <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Aggiungi
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li th:each="movie : ${starredMoviesList}"><a th:text="${movie.title} + ' (' + ${movie.year} + ')'" class="dropdown-item" th:href="@{'/admin/addMovieToStarredMovies/' + ${artist.id} + '/' + ${movie.id}}">film</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-5">
+                <div class="col-12 ">
+                  <div class="btn btn-outline-danger rounded-5" >
+                    <a class="text-danger" th:href="@{'/admin/removeArtist/' + ${artist.id}}">Cancella Artista</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-content" th:unless="${artist}">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row gy-5">
+                <div class="col-12">
+                  <h2>Questo artista non esiste...</h2>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                  <img class="notFound" src="/images/jeffrey_lebowski.gif" alt="nofilmhere"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer th:replace="~{fragments/sections.html :: footer}"></footer>
+  <!-- Bootstrap js -->
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

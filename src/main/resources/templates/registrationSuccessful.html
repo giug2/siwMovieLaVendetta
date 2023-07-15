@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<title>Registrati</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-content">
+					<h5>Congratulazioni ti sei registrato!</h5>
+					<div class="row mt-3 align-content-center">
+						<div class="col-lg-4">
+							<h6><em>Nome:</em> <span th:text="${user.name}"></span></h6>
+						</div>
+						<div class="col-lg-4">
+							<h6><em>Cognome:</em> <span th:text="${user.surname}"></span></h6>
+						</div>
+						<div class="col-lg-4">
+							<h6><em>Email:</em> <span th:text="${user.email}"></span></h6>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 p-5">
+							<a href="/"><img src="/images/logo-siw.png" alt=""/></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="~{fragments/sections.html :: footer}"></footer>
+	<!-- Bootstrap js -->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

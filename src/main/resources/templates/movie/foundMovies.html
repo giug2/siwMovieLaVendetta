@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+	<title>Found Movies</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- embedding FontAwesome Kit script -->
+	<script src="https://kit.fontawesome.com/132524fe8d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<header th:replace="~{fragments/sections.html :: header-film}"></header>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-content">
+					<!-- se non ci sono film trovati mostra questa sezione -->
+				  	<div class="row" th:if="${movies==null || movies.isEmpty()}">
+						<div th:replace="~{fragments/errors.html :: lebowski}"></div>
+					</div>
+					<!-- se sono presenti dei film si mostra questa sezione -->
+					<div class="film-card" th:unless="${movies==null || movies.isEmpty()}">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="heading-section">
+									<h4>Ecco i <em>film</em> trovati</h4>
+								</div>
+								<div th:replace="~{fragments/sections.html :: movies}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="~{fragments/sections.html :: footer}"></footer>
+	<!-- Bootstrap js-->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
