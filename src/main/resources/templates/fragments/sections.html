@@ -152,16 +152,14 @@
 </header>
 <div class="container" th:fragment="index">
   <div class="row">
-    <div class="col-lg-12">
       <div class="page-content">
         <!-- first container -->
         <div class="welcome">
           <div class="row">
-            <div class="col-lg-5">
               <div>
-                <h5>Benvenuti su <em>Siw Movie 2</em></h5>
-                <h6>La vendetta...</h6>
-                <h6>Qui potrai trovare film e attori. Basta un click!</h6>
+                <h5 align="center">Benvenuti su <em>Siw Movie 2</em></h5>
+                <h6 align="center">La vendetta...</h6align="center">
+                <h6 align="center">Qui potrai trovare film e attori. Basta un click!</h6>
               </div>
               <div class="main-button" th:if="${userDetails}">
                 <a href="/profile">Profilo</a>
@@ -172,7 +170,7 @@
             </div>
         </div>
         <!--end of first container -->
-      </div></div></div></div></div>
+      </div></div></div></div>
 <div class="row row-cols-1 row-cols-md-3 g-4" th:fragment="movies">
   <div th:each="movie : ${movies}" class="col">
     <a th:href="@{'/movie/' + ${movie.id}}">

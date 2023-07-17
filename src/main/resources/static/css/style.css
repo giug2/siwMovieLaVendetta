@@ -315,7 +315,7 @@ body .page-content{
 .form-indexAdmin{
 	margin-top: -100px;
 	background-color: #27292a;
-  opacity: 0.9;
+  opacity: 0.98;
   border: 1.5px solid rgb(0, 0, 0);
   padding: 50px 50px;
   border-radius: 23px;
@@ -448,8 +448,8 @@ body .page-content{
 }
 
 .welcome{
-  background-color: black;
-  opacity: 0.6;
+  background-color: #27292a;
+  opacity: 0.9;
   border: 1.5px solid rgb(0, 0, 0);
   background-position: center center;
   background-size: cover;
@@ -493,8 +493,9 @@ body .page-content{
 }
 
 .page-content .film-artist{
-  font-size: 45px;
-  font-weight: 400;
+	font-size: 30px;
+  color: #FFA500;
+  font-weight: 30px;
 }
 
 .page-content h2{
@@ -550,6 +551,27 @@ body .page-content{
   color: #fff;
   font-weight: 200;
   margin-bottom: 25px;
+}
+
+.welcome .main-button{
+	width: 140px;
+	margin-left: 550px;
+  font-size: 10px;
+  display: inline-block;
+  color: #fff;
+  background-color: #FFA500;
+  display: inline-block;
+  border-radius: 23px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome .main-button a:hover, button:hover{
+	 background-color: #fff;
+  color: #FFA500;
 }
 
 .main-button a, .main-button button{
