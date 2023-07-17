@@ -29,7 +29,7 @@
 				<div class="page-content">
 					<!-- se non ci sono film nel sistema mostra questa sezione -->
 					<div class="row" th:if="${artists==null || artists.isEmpty()}">
-						<div th:replace="~{fragments/errors.html :: lebowski}"></div>
+						<div th:replace="~{fragments/errors.html :: nada}"></div>
 					</div>
 					<!-- se sono presenti dei film si mostra questa sezione -->
 					<div class="film-card" th:unless="${artists==null || artists.isEmpty()}">

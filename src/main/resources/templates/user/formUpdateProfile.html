@@ -19,31 +19,15 @@
 </head>
 <body>
 <!-- Content -->
+<!-- ***** Header Area ***** -->
+	<header th:replace="~{fragments/sections.html :: header-home}"></header>
+
 <div class="container px-3">
   <div class="form">
-    <a class="fs-1" href="/profilo"><i class="fa-solid fa-arrow-left"></i></a>
     <form th:action="@{/user/updateProfile}" method="POST" th:object="${userDetails}" enctype="multipart/form-data">
       <div class="row gx-4 align-items-center">
-        <div class="col-md-6 p-3">
-          <div class="d-flex justify-content-center" th:if="${userDetails.picture}">
-            <img class="img-fluid" src="" th:src="@{'/files/' + ${userDetails.picture.id}}" alt="profile_img"/>
-          </div>
-          <div th:unless="${userDetails.picture}">
-            <a href="/"><img src="/images/logo-siw.png" alt="siw-logo"/></a>
-          </div>
-          <div class="row my-3">
-            <div class="col-8 my-3">
-              <label for="formImmagine" class="form-label">Modifica Immagine</label>
-              <input type="file" id="formImmagine" class="form-control" name="file" accept="image/*" />
-              <p class="mt-1 form-text valid" th:if="${fileUploadError}" th:text="${fileUploadError}"></p>
-              <div class="btn btn-outline-danger rounded-5 mt-5" >
-                <a class="text-danger" th:href="@{/user/deleteProfilePicture}">Elimina immagine</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 p-3 border-left">
-          <h4 class="text-center my-4">Modifica <em>profilo</em></h4>
+        
+          <h2 align="center">Modifica profilo</h2>
           <div class="row">
             <div class="form-group col-md-10 mb-3">
               <label class="form-label">Modifica nome</label>
@@ -67,6 +51,22 @@
           </div>
           <div class="mt-1" th:if="${#fields.hasGlobalErrors()}">
             <p class="form-text valid" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+          </div>
+          <div class="d-flex justify-content-center" th:if="${userDetails.picture}">
+            <img class="img-fluid" src="" th:src="@{'/files/' + ${userDetails.picture.id}}" alt="profile_img"/>
+          </div>
+          <div th:unless="${userDetails.picture}">
+            <a href="/"><img src="/images/logo-siw.png" alt="siw-logo"/></a>
+          </div>
+          <div class="row my-3">
+            <div class="col-8 my-3">
+              <label for="formImmagine" class="form-label">Modifica Immagine</label>
+              <input type="file" id="formImmagine" class="form-control" name="file" accept="image/*" />
+              <p class="mt-1 form-text valid" th:if="${fileUploadError}" th:text="${fileUploadError}"></p>
+              <div class="btn btn-outline-danger rounded-5 mt-5" >
+                <a class="text-danger" th:href="@{/user/deleteProfilePicture}">Elimina immagine</a>
+              </div>
+            </div>
           </div>
           <div class="main-button py-3 mt-5">
             <button type="submit">Conferma</button>

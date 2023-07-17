@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Not Found...</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+          <div class="row gx-2">
+            <div class="col-md-6 d-flex align-items-center">
+              <h2>Looks like this page doesn't exist...</h2>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+              <img class="notFound" src="/images/vincent.gif" alt="notFound"/>
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-md-12">
+              <div class="main-button d-flex justify-content-center">
+                <a id="home-btn" href="/">Go to Home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer th:replace="~{fragments/sections.html :: footer}"></footer>
+  <!-- Bootstrap js -->
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

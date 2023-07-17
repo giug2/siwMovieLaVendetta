@@ -29,7 +29,7 @@
 				<div class="page-content">
 					<!-- se non ci sono film nel sistema mostra questa sezione -->
 					<div class="row" th:if="${movies==null || movies.isEmpty()}">
-						<div th:replace="~{fragments/errors.html :: lebowski}"></div>
+						<div th:replace="~{fragments/errors.html :: nada}"></div>
 					</div>
 					<!-- se sono presenti dei film si mostra questa sezione -->
 					<div class="film-card" th:unless="${movies==null || movies.isEmpty()}">
@@ -42,7 +42,7 @@
 									<div th:each="movie : ${movies}" class="col">
 										<a th:href="@{'/admin/formUpdateMovie' + '/' + ${movie.id}}">
 											<div class="card" style="width: 18rem;">
-												<div th:if="${movie.picture}">
+												<div th:if="${movie.picture}" style="width: 285px;">
 													<img src="" th:src="@{'/files/' + ${movie.picture.id}}" alt="film_image"/>
 												</div>
 												<div th:unless="${movie.picture}">

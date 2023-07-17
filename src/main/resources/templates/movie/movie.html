@@ -24,6 +24,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="page-content" th:if="${movie}">
+						<div class="form-movie">
 						<div class="row">
 							<a class="fs-1" th:href="@{/movie}"><i class="fa-solid fa-arrow-left"></i></a>
 							<div class="col-lg-6">
@@ -67,6 +68,7 @@
 								</div>
 							</div>
 						</div>
+						</div>
 						<div class="row justify-content-center" th:if="${!movie.reviews.isEmpty()}">
 							<div class="col-8 mt-4" th:each="review : ${movie.reviews}">
 								<div class="review p-4">
@@ -97,7 +99,7 @@
 						</div>
 						<div class="row justify-content-center" th:if="${userDetails != null && reviewAuthorSet != null &&!reviewAuthorSet.contains(userDetails)}">
 							<div class="col-8">
-								<div class="form review p-4">
+								<div class="form-review">
 									<form th:action="@{'/movie/addNewReviewToMovie/' + ${movie.id}}" th:object="${newReview}" method="POST">
 										<h1>Scrivi una recensione!</h1>
 										<div class="col-4 form-group">

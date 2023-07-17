@@ -1,13 +1,9 @@
-<footer th:fragment="footer">
+<footer class="footer" th:fragment="footer">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <p>
-          Copyright © 2023
-          <a href="https://www.github.com/hermann0001" target="_blank">Hermann Tamilia</a>
-        </p>
-      </div>
-    </div>
+    <div class="footer-col">
+		<h4>Realizzato da <strong>Giulia Gaglione</strong> <br>
+		Progetto SIW 2023</h4>
+	</div>
   </div>
 </footer>
 
@@ -21,13 +17,7 @@
           <a href="/" class="logo">
             <img src="/images/logo.png" alt="logo">
           </a>
-          <!-- search bar -->
-          <div class="search-input">
-            <form class="search" th:action="@{/find}" method="post">
-              <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </form>
-          </div>
+          
           <!-- menu bar -->
           <ul class="nav">
             <li>
@@ -101,13 +91,7 @@
           <a href="/" class="logo">
             <img src="/images/logo.png" alt="logo">
           </a>
-          <!-- search bar -->
-          <div class="search-input">
-            <form class="search" th:action="@{/find}" method="post">
-              <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </form>
-          </div>
+          
           <!-- menu bar -->
           <ul class="nav">
             <li>
@@ -141,13 +125,7 @@
           <a href="/" class="logo">
             <img src="/images/logo.png" alt="logo">
           </a>
-          <!-- search bar -->
-          <div class="search-input">
-            <form class="search" th:action="@{/find}" method="post">
-              <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </form>
-          </div>
+          
           <!-- menu bar -->
           <ul class="nav">
             <li>
@@ -183,6 +161,7 @@
               <div>
                 <h5>Benvenuti su <em>Siw Movie 2</em></h5>
                 <h6>La vendetta...</h6>
+                <h6>Qui potrai trovare film e attori. Basta un click!</h6>
               </div>
               <div class="main-button" th:if="${userDetails}">
                 <a href="/profile">Profilo</a>
@@ -191,53 +170,9 @@
                 <a href="/login">Accedi!</a>
               </div>
             </div>
-          </div>
         </div>
         <!--end of first container -->
-        <!-- second container -->
-        <div class="various-film">
-          <div class="heading-section">
-            <h4> What's <em style="text-transform: none">new</em>?</h4>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="item">
-                <!-- film carousel-->
-                <div id="filmCarousel" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-inner" th:each="id, iStat : ${movieImages}">
-                    <div th:class=" 'carousel-item ' + ${iStat.index == 0 ? 'active' : ' '}">
-                      <img th:src="@{'/files/' + ${id}}" class="d-md-block w-100" alt="...">
-                    </div>
-                  </div>
-                </div>
-                <!-- end of film carousel-->
-                <div class="main-button d-flex justify-content-center">
-                  <a href="/movie"> Browse Movies</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="item">
-                <!-- artist carousel-->
-                <div id="artistsCarousel" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-inner" th:each="id, iStat : ${artistImages}">
-                    <div th:class=" 'carousel-item ' + ${iStat.index == 0 ? 'active' : ' '}">
-                      <img th:src="@{'/files/' + ${id}}" class="d-md-block w-100" alt="...">
-                    </div>
-                  </div>
-                </div>
-                <!-- end of artist carousel-->
-                <div class="main-button d-flex justify-content-center">
-                  <a href="/artist"> Browse Artists</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+      </div></div></div></div></div>
 <div class="row row-cols-1 row-cols-md-3 g-4" th:fragment="movies">
   <div th:each="movie : ${movies}" class="col">
     <a th:href="@{'/movie/' + ${movie.id}}">

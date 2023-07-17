@@ -5,6 +5,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 	<title>Accedi</title>
 
 	<!-- Bootstrap core CSS -->
@@ -18,16 +21,21 @@
 </head>
 
 <body>
+	<!-- ***** Header Area ***** -->
+	<header th:replace="~{fragments/sections.html :: header-home}"></header>
+
 	<!-- TODO: oauth -->
 	<div class="container-md px-4">
 		<div class="form">
 			<div class="row gx-4 align-items-center">
-				<div class="p-3 col-md-6">
-					<a href="/"><img src="/images/logo-siw.png" alt=""/></a>
-				</div>
-				<div class="p-3 col-md-6 border-left">
 					<form th:action="@{/login}" method="POST">
 						<h1>Login</h1>
+						<div class="social-container">
+						<a href="/oauth2/authorization/facebook" class="social" id="facebook"><i class="fa fa-facebook"></i></a>
+						<a href="/oauth2/authorization/google" class="social" id="google"><i class="fa fa-google"></i></a>
+						<a href="/oauth2/authorization/github" class="social"id="github" ><i class="fa fa-github"></i></a>
+					</div>
+					<br>
 						<label class="form-label">Username</label>
 						<div class="input-group mb-3">
 							<span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
@@ -44,7 +52,7 @@
 							<button type="submit">Login</button>
 						</div>
 						<div>
-							<span class="form-text">Se non sei ancora registrato <a href="/register">Registrati</a>!</span>
+							<span class="form-text">Se non sei ancora registrato <a href="/register"><b>Registrati</b></a>!</span>
 						</div>
 					</form>
 				</div>

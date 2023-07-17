@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <title>Registrati</title>
+  <title>Profile</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +26,7 @@
       <div class="page-content">
         <!-- profile card-->
         <div class="row">
+			<div class="form-profile">
           <div class="col-md-12">
             <div class="row align-items-center d-flex justify-content-center profile">
               <div class="col-lg-5 ratio-1x1">
@@ -46,6 +47,7 @@
               </div>
             </div>
           </div>
+			</div>
         </div>
         <!-- ultime recensioni pubblicate modificabili -->
         <div class="row justify-content-center mt-5" th:if="${!userReviews.isEmpty()}">
@@ -69,9 +71,6 @@
                   <div th:case="1" th:insert="~{fragments/starrating.html :: 1-star}"></div>
                 </div>
               </figure>
-              <div class="justify-content-end cancella">
-                <a th:href="@{'/admin/removeReview/' + ${review.id}}">Cancella</a>
-              </div>
             </div>
           </div>
         </div>

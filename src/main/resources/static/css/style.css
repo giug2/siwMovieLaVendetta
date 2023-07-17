@@ -11,23 +11,38 @@ reset
 */
 
 ::selection{
-  background: #20c997;
+  background: #AED2C6;
   color: #fff;
-}
-footer p{
-  text-align: center;
-  padding: 30px 0px;
-  color: #fff;
-  font-weight: 300;
 }
 
-footer p a{
-  color: #fff;
-  transition: all .3s;
+.footer{
+	background-color: #2E8B60;
+	padding: 40px 0;
 }
 
-footer p a:hover {
-  color: #20c997;
+.footer-col{
+	width: 100%;
+	padding: 0 15px;
+}
+
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;	
+	text-transform: capitalize;
+	margin-bottom: 30px;
+	font-weight: 500;
+	position: relative;
+}
+
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -10px;
+	background-color:#fff;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
 }
 
 p{
@@ -77,7 +92,7 @@ a {
 }
 
 html, body{
-  background: #1f2122;
+  background-image: url(https://static.vecteezy.com/ti/vettori-gratis/p3/5629088-minimalista-seamless-doodle-pattern-con-silhouette-della-fotocamera-ornamento-cinema-verde-chiaro-su-sfondo-blu-vettoriale.jpg);
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -95,9 +110,9 @@ header area style
 -------------------------
  */
 .header-area{
-  background-color: transparent;
-  position: absolute;
-  height: 70px;
+  background-color:#2E8B60;
+  padding: 0 100px;
+  height: 100px;
   top: 15px;
   left: 0;
   right: 0;
@@ -129,7 +144,7 @@ header area style
 }
 
 .header-area .main-nav .search input{
-  background-color: #27292a;
+  background-color: #FFA500;
   height: 46px;
   border-radius: 23px;
   border: none;
@@ -164,7 +179,7 @@ header area style
 .header-area .main-nav .nav li{
   padding-left: 10px;
   padding-right: 10px;
-  border-right: 1px solid #27292a;
+  border-right: 1px solid #FEFEE9;
   display: inline-block;
 }
 
@@ -173,7 +188,7 @@ header area style
   font-weight: 400;
   font-size: 16px;
   text-transform: capitalize;
-  color: #666;
+  color: #FEFEE9;
   transition: all 0.3s ease 0s;
   border: transparent;
   padding: 13px 10px;
@@ -184,7 +199,7 @@ header area style
 
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
-  color: #20c997 !important;
+  color: #FFA500 !important;
 }
 
 .header-area .main-nav .nav li:last-child{
@@ -192,7 +207,8 @@ header area style
 }
 
 .header-area .main-nav .nav li:last-child a{
-  background-color: #27292a;
+  background-color: #FEFEE9;
+  color: #000;
   padding: 10px 10px 8px 20px;
   border-radius: 23px;
 }
@@ -206,7 +222,7 @@ header area style
 .header-area .main-nav .nav li:last-child:hover a,
 .header-area .main-nav .nav li:last-child a.active {
   color: #fff !important;
-  background-color: #20c997 !important;
+  background-color: #FFA500 !important;
 }
 
 
@@ -217,11 +233,15 @@ end of header area
  */
 
 body .page-content{
-  margin-top: 110px;
-  background-color: #27292a;
-  padding: 60px;
-  border-radius: 23px;
+  background-image: url(https://static.vecteezy.com/ti/vettori-gratis/p3/5629088-minimalista-seamless-doodle-pattern-con-silhouette-della-fotocamera-ornamento-cinema-verde-chiaro-su-sfondo-blu-vettoriale.jpg);
+  padding: 7% 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left left;
+  background-attachment: fixed;
+  background-color: #f4f4f4;
 }
+
 .page-content .notFound{
   width: 370px;
 }
@@ -270,16 +290,115 @@ body .page-content{
 }
 
 .form{
-  margin-top: 110px;
+  margin-top: 100px;
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-bottom: 100px;
   background-color: #27292a;
-  padding: 60px 50px;
+  opacity: 0.9;
+  border: 1.5px solid rgb(0, 0, 0);
+  padding: 50px 50px;
   border-radius: 23px;
   min-height: 420px;
+  position: center;
+}
+
+.form-profile{
+	margin-top: -50px;
+	background-color: #27292a;
+  opacity: 0.9;
+  border: 1.5px solid rgb(0, 0, 0);
+  padding: 50px 50px;
+  border-radius: 23px;
+}
+
+.form-indexAdmin{
+	margin-top: -100px;
+	background-color: #27292a;
+  opacity: 0.9;
+  border: 1.5px solid rgb(0, 0, 0);
+  padding: 50px 50px;
+  border-radius: 23px;
+}
+
+.form-update{
+	margin-left: 300px;
+	margin-bottom: 50px;
+	margin-right: 300px;
+	background-color: #27292a;
+  opacity: 0.9;
+  border: 1.5px solid rgb(0, 0, 0);
+  padding: 50px 50px;
+  border-radius: 23px;
+}
+
+.form-update h2{
+	font-size: 40px;
+  color: #FFA500;
+  margin-bottom: 25px;
+}
+
+.form-update h4{
+	font-size: 30px;
+  color: #FFA500;
+  margin-bottom: 25px;
+}
+
+.form-movies{
+	margin-top: -50px;
+	background-color: #27292a;
+	opacity: 0.9;
+	border: 1.5px solid rgb(0, 0, 0);
+	padding: 50px 50px;
+	border-radius: 23px;
+}
+
+.form-error{
+	margin-top: -50px;
+	background-color: #27292a;
+	opacity: 0.9;
+	border: 1.5px solid rgb(0, 0, 0);
+	padding: 50px 50px;
+	border-radius: 23px;
+}
+
+.form-movie{
+	margin-top: -50px;
+	background-color: #27292a;
+	opacity: 0.9;
+	border: 1.5px solid rgb(0, 0, 0);
+	padding: 50px 50px;
+	border-radius: 23px;
+}
+
+.form-review{
+	margin-top: 50px;
+	margin-left: -50px;
+	background-color: #27292a;
+	opacity: 0.9;
+	border: 1.5px solid rgb(0, 0, 0);
+	padding: 50px 50px;
+	border-radius: 23px;
+}
+
+.form-review h1{
+	font-size: 40px;
+  color: #FFA500;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-review label{
+  font-style: normal;
+  font-size: 25px;
+  color: #FFA500;
+  margin-bottom: 5px;
+  display: inline-block;
 }
 
 .form h1{
   font-size: 40px;
-  color: #20c997;
+  color: #FFA500;
   margin-bottom: 25px;
   text-align: center;
 }
@@ -287,27 +406,23 @@ body .page-content{
 .form label{
   font-style: normal;
   font-size: 25px;
-  color: #fff;
+  color: #FFA500;
   margin-bottom: 5px;
   display: inline-block;
 }
 
 .form input, .form select, .form textarea{
-  background-color: #27292a;
+  background-color: #AED2C6;
   border-radius: 16px;
   border: 1px solid #fff;
   font-size: 20px;
   color: #fff;
 }
 
-.form .border-left{
-  border-left: 3px solid #1f2122;
-}
-
 .form input:focus, .form textarea:focus{
   color: #fff;
   outline: none !important;
-  border-color: #20c997;
+  border-color: #AED2C6;
   box-shadow: 0 0 10px #20c997;
   background-color: #27292a;
 }
@@ -315,6 +430,7 @@ body .page-content{
 .form .main-button button{
   padding: 6px 15px;
   border: none;
+  margin-left: 250px;
 }
 
 .form a:hover{
@@ -332,7 +448,9 @@ body .page-content{
 }
 
 .welcome{
-  background-image: url("../images/banner.jpg");
+  background-color: black;
+  opacity: 0.6;
+  border: 1.5px solid rgb(0, 0, 0);
   background-position: center center;
   background-size: cover;
   min-height: 380px;
@@ -342,7 +460,7 @@ body .page-content{
 
 .welcome h5, .page-content h5{
   font-size: 40px;
-  color: #fff;
+  color: white;
 }
 
 
@@ -365,12 +483,12 @@ body .page-content{
 
 .editable-text a:hover{
   background-color: #424649;
-  color: #20c997 !important;
+  color: #FFA500 !important;
 }
 
 .page-content .film-title, .page-content .artist-name{
   font-size: 50px;
-  color: #20c997;
+  color: #FFA500;
   text-transform: uppercase;
 }
 
@@ -408,7 +526,7 @@ body .page-content{
 
 .page-content .dropdown a:hover{
   background-color: #424649;
-  color: #20c997;
+  color: #FFA500;
 }
 
 .collapse, .collapsing {
@@ -423,7 +541,7 @@ body .page-content{
 
 .welcome h5 em, .page-content h5 em, .page-content h6 em, .page-content h4 em{
   font-style: normal;
-  color: #20c997;
+  color: #FFA500;
   text-transform: uppercase;
 }
 
@@ -437,7 +555,7 @@ body .page-content{
 .main-button a, .main-button button{
   font-size: 18px;
   color: #fff;
-  background-color: #20c997;
+  background-color: #FFA500;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 25px;
@@ -455,7 +573,7 @@ body .page-content{
 
 .main-button a:hover, button:hover {
   background-color: #fff;
-  color: #20c997;
+  color: #FFA500;
 }
 
 .heading-section h4{
@@ -465,7 +583,7 @@ body .page-content{
 }
 
 .heading-section h4 em{
-  color: #20c997;
+  color: #FFA500;
   font-style: normal;
   text-decoration: underline;
 }
@@ -495,17 +613,19 @@ body .page-content{
 .film-card{
   /*margin-top: 60px;*/
   padding: 30px;
-  background-color: #1f2122;
+  background-color: black;
+  opacity: 0.9;
   border-radius: 23px;
 }
 
 .film-card .card-text, .film-card .card-title {
-  font-size: 14px;
+  font-size: 30px;
   color: #fff;
 }
 
 .film-card .card-img img{
-  height: 430px;
+  height: 286px;
+  width: 286px;
 }
 
 /* overriding bootstrap list*/
@@ -521,4 +641,49 @@ body .page-content{
   border-radius: 23px;
   border:none;
   background-color: #1f2122;
+}
+
+
+/* ========= OAUTH ========*/
+.social-container{
+    padding-bottom: 2%;
+    margin-left: 170px;
+}
+
+.social-container a{
+    height: 40px;
+    width: 40px;
+    margin: 0px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius : 50px;
+}
+
+.social{
+    font-size : 24px;
+}
+
+.social:hover{
+    transform: scale(1.10);
+    box-shadow: 0 1px 7px 0 #FF9900;
+}
+
+#facebook{
+    background: #3968b8;
+    color: #fff;
+    text-decoration: none;
+}
+
+#google{
+    background: #e14435;
+    color: #fff;
+    text-decoration: none;
+}
+
+#github{
+    background: #000000;
+    color: #fff;
+    text-decoration: none;
 }
