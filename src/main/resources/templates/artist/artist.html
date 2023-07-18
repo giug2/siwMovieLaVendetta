@@ -28,7 +28,12 @@
 					<div class="row">
 						<a class="fs-1" th:href="@{/artist}"><i class="fa-solid fa-arrow-left"></i></a>
 						<div class="col-lg-6">
-							<img src="https://picsum.photos/200/300" alt="film_image"/>
+							<div th:if="${artist.picture}">
+								<img src="" th:src="@{'/files/' + ${artist.picture.id}}" alt="film_image"/>
+							</div>
+							<div th:unless="${artist.picture}">
+								<img src="https://picsum.photos/200/300" alt="film_image"/>
+							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="row my-4">
