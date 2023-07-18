@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 public class Credentials {
@@ -19,16 +18,21 @@ public class Credentials {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+	
 	@NotBlank
 	private String username;
+	
 	@NotBlank
 	private String password;
+	
 	private String role;
 
 	@Valid
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
+	
+	
 	public boolean isAdmin(){
 		return this.role.equals(ADMIN_ROLE);
 	}
@@ -72,5 +76,4 @@ public class Credentials {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
 }

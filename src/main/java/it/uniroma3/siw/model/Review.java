@@ -8,21 +8,29 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Review {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     @NotBlank
     private String title;
+    
     @NotNull
     @Min(1)
     @Max(5)
     private Integer mark;
+    
     private String text;
+    
     @ManyToOne
     private User author;
+    
     @ManyToOne
     private Movie movie;
 
+    
+    
     public void setId(Long id) {
         this.id = id;
     }

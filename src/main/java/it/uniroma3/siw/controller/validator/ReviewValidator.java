@@ -13,9 +13,12 @@ public class ReviewValidator implements Validator {
     @Autowired
     private ReviewService reviewService;
 
+    
+    
     @Override
     public boolean supports(Class<?> aClass) { return Review.class.equals(aClass); }
 
+    /* se hanno film e autore uguali */
     @Override
     public void validate(Object o, Errors errors) {
         Review review = (Review) o;

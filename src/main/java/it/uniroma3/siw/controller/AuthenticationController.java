@@ -25,25 +25,37 @@ import java.io.IOException;
 
 @Controller
 public class AuthenticationController {
+	
 	@Autowired
 	private CredentialsService credentialsService;
-    @Autowired
+    
+	@Autowired
 	private UserService userService;
+	
 	@Autowired
 	private SessionData sessionData;
+	
 	@Autowired
 	private UserValidator userValidator;
+	
 	@Autowired
 	private CredentialsValidator credentialsValidator;
+	
 	@Autowired
 	private ReviewService reviewService;
+	
 	@Autowired
 	private MovieService movieService;
+	
 	@Autowired
 	private ArtistService artistService;
+	
 	@Autowired
 	private ImageValidator imageValidator;
 	
+	
+	
+	/* ===== REGISTER ===== */
 	@GetMapping(value = "/register") 
 	public String showRegisterForm (Model model) {
 		model.addAttribute("userData", new User());
@@ -51,25 +63,6 @@ public class AuthenticationController {
 		return "formRegisterUser";
 	}
 	
-	@GetMapping(value = "/login") 
-	public String showLoginForm (Model model) {
-		return "formLogin";
-	}
-
-	@GetMapping(value = "/") 
-	public String index(Model model) {
-		model.addAttribute("movieImages", this.movieService.getLast5movie());
-		model.addAttribute("artistImages", this.artistService.getAllArtistImages());
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication instanceof AnonymousAuthenticationToken) {
-	        return "index";
-		}
-		else if (this.sessionData.getLoggedCredentials().getRole().equals(Credentials.ADMIN_ROLE)) {
-				return "admin/indexAdmin";
-			}
-        return "index";
-	}
-
 	@PostMapping(value = "/register" )
     public String registerUser(@Valid @ModelAttribute("userData") User user, BindingResult userBindingResult,
 			     @Valid @ModelAttribute("userCredentials") Credentials credentials, BindingResult credentialsBindingResult,
@@ -91,18 +84,40 @@ public class AuthenticationController {
         }
         return "formRegisterUser";
     }
+	
+	/* ===== LOGIN ===== */
+	@GetMapping(value = "/login") 
+	public String showLoginForm (Model model) {
+		return "formLogin";
+	}
 
+	/* ===== INDEX ===== */
+	@GetMapping(value = "/") 
+	public String index(Model model) {
+		model.addAttribute("movieImages", this.movieService.getLast5movie());
+		model.addAttribute("artistImages", this.artistService.getAllArtistImages());
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+	        return "index";
+		}
+		else if (this.sessionData.getLoggedCredentials().getRole().equals(Credentials.ADMIN_ROLE)) {
+				return "admin/indexAdmin";
+			}
+        return "index";
+	}
+
+	/* ===== PROFILE ===== */
 	@GetMapping(value = "/profile")
 	public String profile(Model model){
 		if(this.sessionData.getLoggedUser() == null)
 			return "redirect:/login";
-
 		User loggedUser = this.userService.getUser(this.sessionData.getLoggedUser().getId());
 		model.addAttribute("userReviews", this.reviewService.findAllReviewsWrittenByUser(loggedUser));
 		//model.addAttribute("userProfile", loggedUser);
 		return "profile";
 	}
 
+	/* ===== FORM UPDATE PROFILE ===== */
 	@GetMapping(value="/user/formUpdateProfile")
 	public String formUpdateProfilo() {
 		return "/user/formUpdateProfile";
@@ -112,8 +127,8 @@ public class AuthenticationController {
 	public String updateProfilo(@Valid @ModelAttribute("userDetails") User user, BindingResult userBindingResult,
 								@Valid @ModelAttribute MultipartFile file, BindingResult fileBindingResult,
 								Model model) {
-		//this.autoreValidator.validate(autore, autoreBindingResult);
-		if(!file.isEmpty()) this.imageValidator.validate(file, fileBindingResult);
+		if(!file.isEmpty()) 
+			this.imageValidator.validate(file, fileBindingResult);
 		if(!fileBindingResult.hasErrors()){
 			try {
 				this.userService.saveUser(user, file);

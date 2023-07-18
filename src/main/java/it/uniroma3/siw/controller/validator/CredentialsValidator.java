@@ -12,11 +12,15 @@ public class CredentialsValidator implements Validator {
 
     @Autowired
     private CredentialsService credentialsService;
+    
+    
+    
     @Override
     public boolean supports(Class<?> clazz) {
         return Credentials.class.equals(clazz);
     }
 
+    /* se esiste un altro username uguale */
     @Override
     public void validate(Object target, Errors errors) {
         Credentials credentials = (Credentials) target;
@@ -25,3 +29,4 @@ public class CredentialsValidator implements Validator {
         }
     }
 }
+

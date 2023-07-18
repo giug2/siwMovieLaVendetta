@@ -1,8 +1,6 @@
 package it.uniroma3.siw.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.Type;
 
 @Entity
 public class Image {
@@ -10,12 +8,16 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+   
     private byte[] data;
+    
     private String name;
+    
     private String type;
 
+    
+    
     public Image(){
-
     }
 
     public Image(String name,String type, byte[] data){

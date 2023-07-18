@@ -9,13 +9,18 @@ import org.springframework.validation.Validator;
 
 @Component
 public class ArtistValidator implements Validator {
+	
     @Autowired
     private ArtistService artistService;
+    
+    
+    
     @Override
     public boolean supports(Class<?> clazz) {
         return Artist.class.equals(clazz);
     }
 
+    /* se esiste un altro artista con nome e cognome uguale */
     @Override
     public void validate(Object target, Errors errors) {
         Artist artist = (Artist)target;

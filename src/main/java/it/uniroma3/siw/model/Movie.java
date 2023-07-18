@@ -10,24 +10,33 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Movie {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     @NotBlank
     private String title;
+    
     @NotNull
     @Min(1900)
     @Max(2023)
     private Integer year;
+    
     @OneToOne(cascade = CascadeType.ALL)
     private Image picture;
+    
     @ManyToOne
     private Artist director;
+    
     @ManyToMany
     private Set<Artist> actors;
+    
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
+    
+    
     public Movie(){
         this.actors = new HashSet<>();
         this.reviews = new LinkedList<>();
@@ -52,7 +61,7 @@ public class Movie {
         return year;
     }
 
-    public void setYear( Integer year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
@@ -80,11 +89,17 @@ public class Movie {
         this.actors = actors;
     }
 
-    public List<Review> getReviews() { return reviews; }
+    public List<Review> getReviews() { 
+    	return reviews; 
+    }
 
-    public void setReviews(List<Review> reviews) { this.reviews = reviews; }
+    public void setReviews(List<Review> reviews) { 
+    	this.reviews = reviews; 
+    }
 
-    public void addReview(Review review) { this.reviews.add(review); }
+    public void addReview(Review review) { 
+    	this.reviews.add(review); 
+    }
 
     @Override
     public int hashCode() {

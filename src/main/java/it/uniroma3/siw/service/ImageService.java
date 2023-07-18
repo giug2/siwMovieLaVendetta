@@ -14,14 +14,16 @@ import java.io.IOException;
 @Service
 @Transactional
 public class ImageService {
+	
     @Autowired
     private ImageRepository imageRepository;
 
+    
+    
     @Transactional
     public Image save(MultipartFile file) throws IOException{
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         Image image = new Image(fileName, file.getContentType(), file.getBytes());
-
         return this.imageRepository.save(image);
     }
 
@@ -29,10 +31,12 @@ public class ImageService {
     public Image getImage(Long id){
         return this.imageRepository.findById(id).get();
     }
+    
     @Transactional
     public Iterable<Image> getAllImages(){
         return this.imageRepository.findAll();
     }
+    
     @Transactional
     public void delete(Image picture) {
         this.imageRepository.delete(picture);

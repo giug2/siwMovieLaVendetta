@@ -13,13 +13,19 @@ import it.uniroma3.siw.model.Review;
 
 @Controller
 public class ReviewController {
+	
     @Autowired
     ReviewService reviewService;
+    
     @Autowired
     ReviewValidator reviewValidator;
+    
     @Autowired
     SessionData sessionData;
 
+    
+    
+    /* ===== REMOVE REVIEW DA ADMIN ===== */
     @GetMapping(value = "/admin/removeReview/{reviewId}")
     public String adminRemoveReview(@PathVariable("reviewId")Long reviewId){
         Review review = this.reviewService.findReview(reviewId);
@@ -28,6 +34,7 @@ public class ReviewController {
         return "redirect:/movie/" + movie.getId();
     }
 
+    /* ===== REMOVE REVIEW DA USER ===== */
     @GetMapping(value="/removeReview/{reviewId}")
     public String authorRemoveReview(@PathVariable("reviewId")Long reviewId, Model model){
         Review review = this.reviewService.findReview(reviewId);
@@ -35,7 +42,6 @@ public class ReviewController {
         //CONTROLLA SE LA CHIAMATA GET NON E' STATA FORMATA MANUALMENTE DA UN ALTRO UTENTE
         if(!this.sessionData.getLoggedUser().equals(review.getAuthor()))
             return "/errors/error404";
-
         this.reviewService.deleteReview(review);
         return "redirect:/movie/" + movie.getId();
     }

@@ -15,16 +15,22 @@ import java.util.Set;
 @Service
 @Transactional
 public class MovieService {
+	
     @Autowired
     private MovieRepository movieRepository;
+    
     @Autowired
     private ArtistService artistService;
+    
     @Autowired
     private ImageService imageService;
 
+    
+    
     @Transactional
     public Movie saveMovie(Movie movie, MultipartFile image) throws IOException {
-        if(!image.isEmpty()) this.addMovieImage(movie, image);
+        if(!image.isEmpty()) 
+        	this.addMovieImage(movie, image);
         return this.movieRepository.save(movie);
     }
 
@@ -32,29 +38,36 @@ public class MovieService {
     public Movie saveMovie(Movie movie){
         return this.movieRepository.save(movie);
     }
+    
     @Transactional
     public Movie findMovie(Long id) {
         return this.movieRepository.findById(id).orElse(null);
     }
+    
     public Iterable<Movie> findMovies(int year){
         return this.movieRepository.findByYear(year);
     }
+    
     @Transactional
     public Iterable<Movie> getAllMovies() {
         return this.movieRepository.findAll();
     }
+    
     @Transactional
     public boolean exists(Movie movie){
         return movie.getTitle() != null && this.movieRepository.existsByTitleAndYear(movie.getTitle(), movie.getYear());
     }
+    
     @Transactional
     public Iterable<Movie> findMoviesNotDirectedByArtist(Long id) {
         return this.movieRepository.findMoviesNotDirectedByArtist(id);
     }
+    
     @Transactional
     public Iterable<Movie> findMoviesNotStarredByArtist(Long id) {
         return this.movieRepository.findMoviesNotStarredByArtist(id);
     }
+    
     @Transactional
     public void removeActorFromMovie(Long movieId, Long actorId) {
         Movie movie = this.findMovie(movieId);
@@ -64,12 +77,14 @@ public class MovieService {
         this.saveMovie(movie);
         this.artistService.saveArtist(actor);
     }
+    
     @Transactional
     public void updateTitle(String title, Long id) {
         Movie movie = this.findMovie(id);
         movie.setTitle(title);
         this.saveMovie(movie);
     }
+    
     @Transactional
     public void addActorToMovie(Long movieId, Long actorId) {
         Movie movie = this.findMovie(movieId);
@@ -79,6 +94,7 @@ public class MovieService {
         this.saveMovie(movie);
         this.artistService.saveArtist(actor);
     }
+    
     @Transactional
     public void removeDirector(Long movieId) {
         Movie movie = this.findMovie(movieId);
@@ -88,6 +104,7 @@ public class MovieService {
         this.saveMovie(movie);
         this.artistService.saveArtist(director);
     }
+    
     @Transactional
     public void setDirectorToMovie(Long movieId, Long directorId) {
         Movie movie = this.findMovie(movieId);
@@ -97,24 +114,24 @@ public class MovieService {
         this.saveMovie(movie);
         this.artistService.saveArtist(director);
     }
+    
     @Transactional
     public void deleteMovie(Long id) {
         Movie movie = this.findMovie(id);
         Artist director = movie.getDirector();
         if(director != null)
-            director.getDirectedMovies().remove(movie);      //rimuovo l'associazione con il regista
-
+            director.getDirectedMovies().remove(movie);    
         for(Artist a : movie.getActors())
-            a.getStarredMovies().remove(movie);             //rimuovo il film da ogni collezione di movie in actor
-
-        movie.getActors().clear();                          //svuoto la collezione di attori nel film
-
+            a.getStarredMovies().remove(movie);
+        movie.getActors().clear(); 
         this.movieRepository.delete(movie);
     }
+    
     @Transactional
     public void addMovieImage(Movie movie, MultipartFile image) throws IOException {
         movie.setPicture(this.imageService.save(image));
     }
+    
     @Transactional
     public Set<Long> getAllMovieImages() {
         return this.movieRepository.findAllMovieImage();

@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller.session;
 
 import it.uniroma3.siw.model.Credentials;
+
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +16,23 @@ import org.springframework.stereotype.Component;
 public class SessionData {
 
     private User user;
+    
     private Credentials credentials;
+    
     @Autowired
     private CredentialsService credentialsService;
-/*    @Autowired
-    private UserService userService;*/
 
+//    @Autowired
+//    private UserRepository userRepository;
+
+    
+    
     public Credentials getLoggedCredentials(){
         this.update();
-
         return this.credentials;
     }
 
     public User getLoggedUser(){
-
         try{
             this.update();
         }catch(ClassCastException e){
@@ -40,22 +44,7 @@ public class SessionData {
     private void update(){
         Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails loggedUserDetails = (UserDetails) object;
-
         this.credentials = this.credentialsService.getCredentials(loggedUserDetails.getUsername());
         this.user = this.credentials.getUser();
     }
-
-/*    private void oauth2update(){
-        Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        CustomOAuth2User loggedOAuth2User = (CustomOAuth2User) object;
-
-        try {
-            this.user = userRepository.findByName(loggedOAuth2User.getLogin()).get();
-        }
-        catch( NoSuchElementException e ){
-            this.user = userRepository.findByName(loggedOAuth2User.getFullName()).get();
-        }
-    }*/
-
-
 }

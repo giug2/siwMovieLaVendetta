@@ -21,9 +21,12 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    
     @Autowired
     private ImageService imageService;
 
+    
+    
     /**
      * This method retrieves a User from the DB based on its ID.
      * @param id the id of the User to retrieve from the DB
@@ -46,6 +49,7 @@ public class UserService {
     public User saveUser(User user) {
         return this.userRepository.save(user);
     }
+    
     @Transactional
     public User saveUser(User user, MultipartFile file) throws IOException {
         if(!file.isEmpty()) user.setPicture(this.imageService.save(file));

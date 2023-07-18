@@ -16,21 +16,27 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Artist {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	@NotBlank
+	
+    @NotBlank
 	private String name;
-	@NotBlank
+	
+    @NotBlank
 	private String surname;
-	@NotNull
+	
+    @NotNull
 	@Past
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
-	@PastOrPresent
+	
+    @PastOrPresent
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfDeath;
-	@OneToOne(cascade = CascadeType.ALL)
+	
+    @OneToOne(cascade = CascadeType.ALL)
 	private Image picture;
 	
 	@ManyToMany(mappedBy="actors")
@@ -38,6 +44,8 @@ public class Artist {
 	
 	@OneToMany(mappedBy="director")
 	private List<Movie> directedMovies;
+	
+	
 	
 	public Artist(){
 		this.starredMovies = new HashSet<>();

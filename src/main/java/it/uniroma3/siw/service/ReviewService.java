@@ -16,9 +16,12 @@ public class ReviewService {
 
     @Autowired
     ReviewRepository reviewRepository;
+    
     @Autowired
     MovieService movieService;
 
+    
+    
     @Transactional
     public Review saveReview(Review review, Movie movie, User author){
         movie.addReview(review);
@@ -27,6 +30,7 @@ public class ReviewService {
 
         return this.reviewRepository.save(review);
     }
+    
     @Transactional
     public boolean exists(Review review) {
         return this.reviewRepository.existsByMovieAndAuthor(review.getMovie(), review.getAuthor());
@@ -41,6 +45,7 @@ public class ReviewService {
     public void deleteReview(Review review) {
         this.reviewRepository.delete(review);
     }
+    
     @Transactional
     public Review findReview(Long reviewId) {
         return this.reviewRepository.findById(reviewId).orElse(null);

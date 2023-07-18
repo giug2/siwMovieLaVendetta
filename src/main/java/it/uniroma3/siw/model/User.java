@@ -9,15 +9,19 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users") // cambiamo nome perchÃ¨ in postgres user e' una parola riservata
+@Table(name = "users") 
 public class User {
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+	
 	@NotBlank
 	private String name;
+	
 	@NotBlank
 	private String surname;
+	
 	@Column(nullable = false, unique = true)
 	@Email
 	@NotBlank
@@ -29,6 +33,8 @@ public class User {
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
 	private List<Review> reviews;
 
+	
+	
     public Long getId() {
 		return id;
 	}
@@ -64,11 +70,17 @@ public class User {
 		return picture;
 	}
 
-	public void setPicture(Image picture) { this.picture = picture; }
+	public void setPicture(Image picture) { 
+		this.picture = picture; 
+	}
 
-	public List<Review> getReviews() { return reviews; }
+	public List<Review> getReviews() { 
+		return reviews;
+	}
 
-	public void setReviews(List<Review> reviews) { this.reviews = reviews; }
+	public void setReviews(List<Review> reviews) { 
+		this.reviews = reviews; 
+	}
 
 	@Override
 	public boolean equals(Object o) {
