@@ -145,7 +145,7 @@ public class MovieController {
 	@GetMapping(value="/movie/{id}")
 	public String getMovie(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("movie", this.movieService.findMovie(id));
-		model.addAttribute("averageRating", this.reviewService.getAverageRatingByMovie(id));
+//		model.addAttribute("averageRating", this.reviewService.getAverageRatingByMovie(id));
 		if(this.sessionData.getLoggedUser() != null) model.addAttribute("newReview", new Review());
 		model.addAttribute("reviewAuthorSet",  this.userService.getAllMovieReviewsAuthors(id));
 		return "/movie/movie";
@@ -172,10 +172,10 @@ public class MovieController {
 		this.reviewValidator.validate(review, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			this.reviewService.saveReview(review, this.movieService.findMovie(movieId), this.sessionData.getLoggedUser());
-			model.addAttribute("averageRating", this.reviewService.getAverageRatingByMovie(movieId));
+//			model.addAttribute("averageRating", this.reviewService.getAverageRatingByMovie(movieId));
 		}
 		model.addAttribute("movie", this.movieService.findMovie(movieId));
-		model.addAttribute("averageRating", this.reviewService.getAverageRatingByMovie(movieId));
+//		model.addAttribute("averageRating", this.reviewService.getAverageRatingByMovie(movieId));
 		model.addAttribute("reviewAuthorSet",  this.userService.getAllMovieReviewsAuthors(movieId));
 		return "/movie/movie";
 	}

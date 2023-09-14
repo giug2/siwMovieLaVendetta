@@ -36,10 +36,10 @@ public class ReviewService {
         return this.reviewRepository.existsByMovieAndAuthor(review.getMovie(), review.getAuthor());
     }
 
-    @Transactional
-    public Double getAverageRatingByMovie(Long movieId){
-        return this.reviewRepository.getAverageRatingByMovie(movieId);
-    }
+//    @Transactional
+//    public Double getAverageRatingByMovie(Long movieId){
+//        return this.reviewRepository.getAverageRatingByMovie(movieId);
+//    }
 
     @Transactional
     public void deleteReview(Review review) {
