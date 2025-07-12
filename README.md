@@ -24,5 +24,5 @@ Utente:
 - Bootstrap (per interfaccia responsive)
 - Oauth2
   
-## Author
+## Autore
 [Gaglione Giulia](https://github.com/giug2)
